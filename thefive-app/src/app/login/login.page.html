@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content paddings>
+	<form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
+ 
+		<ion-item>
+		  <ion-label position="floating">Email</ion-label>
+		  <ion-input type="email" formControlName="email"></ion-input>
+		</ion-item>
+		<div *ngFor="let err of errorMessages.email">
+			<ng-container *ngIf="email.hasError(err.type) && (email.dirty || email.touched)">
+				<small class="error-message">{{err.message}}</small>
+			</ng-container>
+		</div>
+	 
+		<ion-item>
+		  <ion-label position="floating">Password</ion-label>
+		  <ion-input type="password" formControlName="password"></ion-input>
+		</ion-item>
+		<div *ngFor="let err of errorMessages.password">
+			<ng-container *ngIf="password.hasError(err.type) && (password.dirty || password.touched)">
+				<small class="error-message">{{err.message}}</small>
+			</ng-container>
+		</div>
+		
+	 
+		<ion-button expand="full" type="submit" [disabled]="!credentialsForm.valid">Login</ion-button>
+		<a [routerLink]="['/reset']" class="small-text">Forgot Password?</a>
+	 
+	  </form>
+
+</ion-content>

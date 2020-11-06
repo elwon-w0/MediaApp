@@ -1,0 +1,104 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content paddings>
+  <form [formGroup]="regForm" (ngSubmit)="register()">
+
+      <ion-item>
+          <ion-label position="floating">Gender</ion-label>
+          <ion-select placeholder="Select One" formControlName="gender">
+              <ion-select-option value="F">Female</ion-select-option>
+              <ion-select-option value="M">Male</ion-select-option>
+          </ion-select>
+      </ion-item>
+      <ng-container class="error-message"
+            *ngIf="(registerFormControl.gender.touched || submitted) && registerFormControl.gender.errors?.required">
+          <small class="error-message">Gender is required</small>
+      </ng-container>
+      <ion-item>
+          <ion-label position="floating">Date of Birth</ion-label>
+          <input formControlName="dob" [max]="today" type="date" required="required">
+      </ion-item>
+      <span class="error-message"
+            *ngIf="(registerFormControl.dob.touched || submitted) && registerFormControl.dob.errors?.required">
+            <small class="error-message">Date of birth is required</small>
+      </span>
+      <ion-item>
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input type="text" formControlName="fname"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.fname">
+        <ng-container *ngIf="registerFormControl.fname.hasError(error.type) && (registerFormControl.fname.dirty || registerFormControl.fname.touched)">
+            <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-item>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input type="text" formControlName="lname"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.lname">
+        <ng-container *ngIf="registerFormControl.lname.hasError(error.type) && (registerFormControl.lname.dirty || registerFormControl.lname.touched)">
+            <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.email">
+        <ng-container *ngIf="registerFormControl.email.hasError(error.type) && (registerFormControl.email.dirty || registerFormControl.email.touched)">
+            <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-item>
+          <ion-label position="floating">Username</ion-label>
+          <ion-input type="text" formControlName="username"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.username">
+        <ng-container *ngIf="registerFormControl.username.hasError(error.type) && (registerFormControl.username.dirty || registerFormControl.username.touched)">
+            <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <span class="error-message"
+            *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors?.required">
+          Password is required
+      </span>
+      <span class="error-message"
+            *ngIf="registerFormControl.password.touched && registerFormControl.password.errors?.invalidPassword">
+            <small class="error-message"> Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+          letter and 1 number</small>
+      </span>
+
+      <ion-item>
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input type="password" formControlName="confirmpassword"></ion-input>
+      </ion-item>
+      <span class="error-message"
+            *ngIf="(registerFormControl.confirmpassword.touched || submitted)&& registerFormControl.confirmpassword.errors?.required">
+            <small class="error-message"> Confirm Password is required</small>
+      </span>
+      <span class="error-message"
+            *ngIf="registerFormControl.confirmpassword.touched && registerFormControl.confirmpassword.errors?.passwordMismatch">
+            <small class="error-message">Passwords does not match</small>
+      </span>
+
+      <ion-button fill="solid" expand="block" [disabled]="!regForm.valid" color="dark" (click)="register()">Signup</ion-button>
+  </form>
+
+</ion-content>
+

@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Activation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="row"
+        *ngIf="CurrentState=='NotVerified'">
+            <h2> Invalid URL.</h2>
+    </div>
+  <div class="row" *ngIf="CurrentState=='Verified'">
+  </div>
+
+</ion-content>

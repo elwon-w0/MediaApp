@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Upload
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="uploadForm" (ngSubmit)="onUpload()">
+        <div class="ion-text-center">
+            <ion-card-content>
+                <!--<img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null" id="postImage">-->
+                <h3 [hidden]="lastImage !== null">Please Select Image!</h3>
+            </ion-card-content>
+
+            <ion-item-divider>
+                <ion-textarea formControlName="caption" [(ngModel)]="desc" textarea id="postCaption" class="article_text" type="text" placeholder="Write a caption.." rows="1"></ion-textarea>       
+            </ion-item-divider>
+            <ng-container class="error-message"
+                *ngIf="(uploadFormControl.caption.touched || submitted) && uploadFormControl.caption.errors?.required">
+                <small class="error-message">Caption is required</small>
+            </ng-container>
+
+
+        </div>
+
+        <div class="ion-text-center">
+            <ion-item text-center lines="none">
+                <ion-label *ngIf="!permuteFile; else showPermute">
+                    <p>Please upload image file only.</p>
+                </ion-label>
+                <ng-template #showPermute>
+                    <p>{{[permuteFile.name]}}</p>
+                </ng-template>
+            </ion-item>
+            <ion-button (click)="permute.click()">
+                <ion-icon name="camera"></ion-icon> Select Image
+            </ion-button>
+            <input formControlName="upload" #permute class="input-file" type="file" name="image" (change)="onPermuteFileSelected($event)" accept="image/*"/>
+            <ion-button (click)="onUpload()" [disabled]="!uploadForm.valid">
+                <ion-icon name="cloud-upload"></ion-icon> Upload Post
+            </ion-button>
+        </div>
+    </form>
+</ion-content>

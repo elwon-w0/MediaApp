@@ -1,0 +1,20 @@
+<ion-app>
+    <ion-menu *ngIf="selectedPath != '/user/user-feed'" contentId="content" type="overlay">
+        <ion-header>
+          <ion-toolbar color="primary">
+            <ion-title>Menu</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content >
+          <ion-list id="menu-list">
+          <ion-menu-toggle *ngFor="let p of pages; let i = index">
+            <ion-item  [routerLink]="[p.url]" routerDirectin="root" [class.active-item]="selectedPath === p.url">
+              {{ p.title }}
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>   
+    </ion-menu>
+ 
+    <ion-router-outlet id="content" main></ion-router-outlet>
+</ion-app>

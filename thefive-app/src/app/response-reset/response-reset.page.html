@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Reset your password</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="row"
+        *ngIf="CurrentState=='NotVerified'">
+        <div class="col-md-12">
+            <h2> Invalid URL.</h2>
+        </div>
+    </div>
+    <div class="row" *ngIf="CurrentState=='Verified'">
+      <form [formGroup]="ResponseResetForm" (ngSubmit)="ResetPassword(ResponseResetForm)">
+    
+        <ion-item>
+          <ion-label position="floating">New Password</ion-label>
+          <ion-input type="password" formControlName="newpassword"></ion-input>
+        </ion-item>
+        <span class="error-message"
+            *ngIf="(ResponseForm.newpassword.touched || submitted) && ResponseForm.newpassword.errors?.required">
+            Password is required
+        </span>
+        <span class="error-message"
+            *ngIf="ResponseForm.newpassword.touched && ResponseForm.newpassword.errors?.invalidPassword">
+            Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+            letter and 1 number
+        </span>
+      
+        <ion-item>
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input type="password" formControlName="confirmpassword"></ion-input>
+        </ion-item>
+        <span class="error-message"
+        *ngIf="(ResponseForm.confirmpassword.touched || submitted)&& ResponseForm.confirmpassword.errors?.required">
+        Confirm Password is required
+        </span>
+        <span class="error-message"
+            *ngIf="ResponseForm.confirmpassword.touched && ResponseForm.confirmpassword.errors?.passwordMismatch">
+            Passwords does not match
+        </span>
+        <ion-button expand="full" (click)="ResetPassword(ResponseResetForm)" type="button" >Update Password</ion-button>
+        </form>
+      </div>
+
+</ion-content>

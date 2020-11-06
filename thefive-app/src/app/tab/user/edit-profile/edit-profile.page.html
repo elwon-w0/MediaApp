@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title>Edit Profile</ion-title>
+      <ion-buttons slot="end">
+          <ion-button icon-only (click)="updateProfile()">
+              <ion-icon name="checkmark" color="primary" style="font-size: 34px;background-color: white;"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!-- Form -->
+  <ion-item>
+      <ion-label>
+          <ion-icon name="person" color="gray"></ion-icon>
+      </ion-label>
+      <ion-input placeholder="First Name" type="text" [value]="user_data.name_surname"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>
+        <ion-icon name="person" color="gray"></ion-icon>
+    </ion-label>
+    <ion-input placeholder="Last Name" type="text" [value]="user_data.name_surname"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Gender</ion-label>
+    <ion-select placeholder="Select One">
+        <ion-select-option value="F">Female</ion-select-option>
+        <ion-select-option value="M">Male</ion-select-option>
+    </ion-select>
+</ion-item>
+
+  <ion-item>
+      <ion-label>
+          <ion-icon name="calendar-outline" color="gray"></ion-icon>
+      </ion-label>
+      <ion-input [max]="today" type="date" required="required"></ion-input>
+  </ion-item>
+
+  <ion-item>
+      <ion-label>
+          <ion-icon name="mail" color="gray"></ion-icon>
+      </ion-label>
+      <ion-input placeholder="Email" type="text" [value]="user_data.website"></ion-input>
+  </ion-item>
+
+  <ion-item>
+      <ion-label>
+          <ion-icon name="quote" color="gray"></ion-icon>
+      </ion-label>
+      <ion-textarea placeholder="" [value]="user_data.description"></ion-textarea>
+  </ion-item>
+
+  <div margin-top padding-top>
+      <h4 no-margin no-padding class="info-text">Change Password</h4>
+      <hr class="custom-hr" color="gray">
+  </div>
+
+  <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="eye-off-outline"></ion-icon>
+      </ion-label>
+      <ion-input placeholder="Pasword" type="password" ></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="eye-off-outline"></ion-icon>
+      </ion-label>
+      <ion-input placeholder="Confirm pasword" type="password" ></ion-input>
+  </ion-item>
+
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="page-content">
+  <ion-card class="feed-card" *ngFor="let feed of feedList">
+      <ion-card-content class="feed-user-wrapper">
+        <div class="ion-align-items-center user-image-wrapper">
+          <img [src]="feed.profile">
+        </div>
+        <div class="user-details">
+          <p class="user-name">{{feed.username}}</p>
+        </div>
+        <ion-buttons slot="end">
+          <ion-button>
+            <ion-icon name="more"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-card-content>
+      <div class="feed-slides-wrapper">
+
+        <ion-slides pager="true" [options]="slideOpts" class="feed-slides">
+          <ion-slide >
+            <img [src]="feed.url"/>
+          </ion-slide>
+        </ion-slides>
+      </div>
+      <ion-card-content class="feed-details-container">
+        <p class="user-given-details">
+          <ion-avatar>
+            <img [src]="feed.profile">
+          </ion-avatar>
+          <strong class="user-name">{{feed.username}} </strong>
+          <span class="feed-text">{{feed.desc}}</span>
+        </p>
+        <p class="all-comments"> <span class="grey-text">View All Comments</span></p>
+        <p class="post-time"> <span class="grey-text">{{feed.created}}</span></p>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+
